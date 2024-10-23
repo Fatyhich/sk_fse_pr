@@ -10,6 +10,7 @@ from functools import partial
 from segment_anything import SamPredictor, sam_model_registry
 from tqdm import tqdm
 from PIL import Image
+import os
 from canguro_processing_tools.utils.parallel_utils import do_parallel
 from canguro_processing_tools.trajectories.trajectory_2d import Trajectory2D
 from canguro_processing_tools.utils.camera_utils import project_points, DEFAULT_CAMERA_PARAMS
@@ -260,8 +261,52 @@ def _generate_masks(input_path: str,
                 use_tqdm=False)
     
 
+def _apply_masks(images_path: str, masks_path: str, output_path: str):
+    """
+    Apply a masks to an images.
+    
+    Args:
+        imagse_path (str): Path to the input images.
+        masks_path (str): Path to the masks.
+        outputs_path (str): Path to save the masked images.
+        
+    Returns:
+        None
+    """
+    images_id = os.listdir(images_path)
+    masks_id = os.listdir(masks_path)
+
+    # Check if output directory exists, create if not
+    output_dir = os.path.dirname(output_path)
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+
+    for image_id, mask_id in zip(images_id, masks_id):
+
+        # Make path
+        image_path = os.path.join(images_path, image_id)
+        mask_path = os.path.join(masks_path, mask_id)
+        output_path = os.path.join(output_path, image_id)
+
+        # Load the image and mask
+        image = cv2.imread(image_path, cv2.IMREAD_COLOR)
+        mask = cv2.imread(mask_path, cv2.IMREAD_GRAYSCALE)
+        
+        # Ensure the mask is of the same size as the image
+        mask = np.array(mask)
+        if mask.shape != image.shape[:2]:
+            mask = cv2.resize(mask, (image.shape[1], image.shape[0]), interpolation=cv2.INTER_AREA)
+        
+        # Apply the mask to the image
+        masked_image = cv2.bitwise_and(image, image, mask=mask)
+        
+        # Save the result
+        cv2.imwrite(output_path, masked_image)
+
+
 if __name__ == "__main__":
     fire.Fire({
         "sample_frames": _sample_frames,
         "generate": _generate_masks,
+        "apply_masks": _apply_masks,
     })
