@@ -1,2 +1,2 @@
 preprocess:
-	python3 segment.py --help
+	python3 segmentation.py --help
