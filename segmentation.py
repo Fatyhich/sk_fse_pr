@@ -80,7 +80,7 @@ def _sample_points(trajectory: Trajectory2D,
         idx = start_idx + 1
         prev_ts = timestamps[start_idx]
         poses = [trajectory.pose_at(prev_ts)]
-        frame = trajectory.frame_at(prev_ts)
+        frame = trajectory.frame_at(prev_ts)[0]
         frame_ts = prev_ts
 
         while len(poses) < n_points + 1:
@@ -137,13 +137,15 @@ def _sample_frames(input_path: str,
     random.seed(seed)
     np.random.seed(seed) 
 
-    extractions = locate_day_dirs_struct(input_path)
-    trajectories = do_parallel(partial(_process_trajectory, 
-                                       min_duration = footsteps_duration + 1.),
-                            extractions,
-                            n_workers=20,
-                            use_tqdm=True)
-    trajectories = _reduce_lists(trajectories)
+    # extractions = locate_day_dirs_struct(input_path)
+    # trajectories = do_parallel(partial(_process_trajectory, 
+    #                                    min_duration = footsteps_duration + 1.),
+    #                         extractions,
+    #                         n_workers=20,
+    #                         use_tqdm=True)
+    
+    # trajectories = _reduce_lists(trajectories)
+    trajectories = _process_trajectory(traj_path=input_path,min_duration=footsteps_duration + 1.)
 
     output_frames_dir = output_path / "frames"
     output_frames_dir.mkdir(parents=True)
