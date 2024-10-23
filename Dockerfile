@@ -8,14 +8,16 @@ RUN adduser --disabled-password --gecos '' captain \
     && adduser captain sudo \
     && echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
-# Устанавливаем необходимые пакеты
-RUN pip install pandas fire tqdm matplotlib torch segment-anything torchvision opencv-python six --break-system-packages
-
-RUN pip install --upgrade six --break-system-packages && pip install --force-reinstall six --break-system-packages
-
 # Создаем необходимые папки
 RUN mkdir /mnt/code && chmod a+rwx /mnt/code && \
     mkdir /mnt/data && chmod a+rwx /mnt/data
 
 # Устанавливаем рабочую директорию
 WORKDIR /mnt/code
+
+# Устанавливаем необходимые пакеты
+COPY Makefile_docker /mnt/code/
+
+RUN bash -l -c "make -f /mnt/code/Makefile_docker prereqs"
+RUN bash -l -c "make -f /mnt/code/Makefile_docker build"
+RUN bash -l -c "make -f /mnt/code/Makefile_docker test"

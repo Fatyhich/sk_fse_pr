@@ -1,0 +1,13 @@
+prereqs:
+	python3 -m pip install pandas fire tqdm \
+	matplotlib torch segment-anything torchvision \
+	opencv-python six --break-system-packages
+	python3 -m pip install --upgrade six \
+	--break-system-packages && \
+	pip install --force-reinstall \
+	six --break-system-packages
+build:
+	# Here we but cython build
+test:
+	# Here we some tests
+
