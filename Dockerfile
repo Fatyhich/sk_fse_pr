@@ -26,4 +26,6 @@ COPY src/ /mnt/code/src
 
 RUN make -f /mnt/code/Makefile_docker build
 
+COPY test/ /mnt/code/test
+
 RUN make -f /mnt/code/Makefile_docker test

@@ -5,7 +5,7 @@ from typing import Union
 from abc import ABC, abstractmethod
 from pathlib import Path
 from dataclasses import dataclass
-from canguro_processing_tools.utils.math_utils import align_timestamps
+from src.canguro_processing_tools.utils.math_utils import align_timestamps
 
 
 class TrajectoryStatus(enum.Enum):

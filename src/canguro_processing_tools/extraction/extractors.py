@@ -12,16 +12,16 @@ except:
 from typing import Union, List, Optional
 from abc import ABC, abstractmethod
 from pathlib import Path
-from canguro_processing_tools.utils.io_utils import (AbstractImageIO, 
+from src.canguro_processing_tools.utils.io_utils import (AbstractImageIO, 
                                                OpenCVImageIO, 
                                                TurboJPEGImageIO, 
                                                SequentialCSVWriter,
                                                ImageIO,
                                                remove_dir)
-from canguro_processing_tools.extraction.validators import (validate_trajectory, 
+from src.canguro_processing_tools.extraction.validators import (validate_trajectory, 
                                                  TrajectoryStatus)
-from canguro_processing_tools.utils.str_utils import seconds_to_human_readble_time
-from canguro_processing_tools.utils.sync_utils import FPSBuffer
+from src.canguro_processing_tools.utils.str_utils import seconds_to_human_readble_time
+from src.canguro_processing_tools.utils.sync_utils import FPSBuffer
 
 
 class AbstractExtractionResult:

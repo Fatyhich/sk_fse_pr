@@ -8,8 +8,8 @@ from pathlib import Path
 from tkinter import ttk
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from PIL import Image, ImageTk
-from canguro_processing_tools.trajectories.trajectory_2d import Trajectory2D
-from canguro_processing_tools.utils.io_utils import (ImageIO,
+from src.canguro_processing_tools.trajectories.trajectory_2d import Trajectory2D
+from src.canguro_processing_tools.utils.io_utils import (ImageIO,
                                                      OpenCVImageIO,
                                                      TurboJPEGImageIO)
 

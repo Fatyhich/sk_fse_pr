@@ -5,7 +5,7 @@ import numpy as np
 
 from typing import Dict, Tuple, Optional, List, Union
 from pathlib import Path
-from canguro_processing_tools.utils.math_utils import quaternion_to_yaw, align_timestamps
+from src.canguro_processing_tools.utils.math_utils import quaternion_to_yaw, align_timestamps
 
 
 
