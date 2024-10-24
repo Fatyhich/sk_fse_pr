@@ -19,4 +19,8 @@ docker run -it -v <place_of_dataset>:/mnt/data fse_test:latest
 ```bash
 docker run -it -v ./dataset:/mnt/data fse_test:latest
 ```
+4. Download weights for SAM:
+```
+https://dl.fbaipublicfiles.com/segment_anything/sam_vit_h_4b8939.pth
+```
 
