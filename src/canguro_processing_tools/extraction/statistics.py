@@ -2,9 +2,9 @@ from typing import TypeVar, Generic, List, Optional, Tuple, Any, Dict, Union
 from abc import ABC, abstractmethod
 from pathlib import Path
 from functools import partial
-from src.canguro_processing_tools.extraction.extraction_handle import ExtractionHandle
-from src.canguro_processing_tools.utils.parallel_utils import do_parallel
-from src.canguro_processing_tools.utils.str_utils import seconds_to_human_readble_time
+from canguro_processing_tools.extraction.extraction_handle import ExtractionHandle
+from canguro_processing_tools.utils.parallel_utils import do_parallel
+from canguro_processing_tools.utils.str_utils import seconds_to_human_readble_time
 
 
 SAMPLE_TYPE = TypeVar("SAMPLE_TYPE")

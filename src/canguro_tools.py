@@ -7,27 +7,27 @@ from typing import Tuple, Dict, List, Optional, Any
 from pathlib import Path
 from functools import partial
 import numpy as np
-from src.canguro_processing_tools.extraction.locators import locate_svo_files
-from src.canguro_processing_tools.extraction.extractors import (extract_svo_trajectory_safe,
+from canguro_processing_tools.extraction.locators import locate_svo_files
+from canguro_processing_tools.extraction.extractors import (extract_svo_trajectory_safe,
                                                             ImageIO,
                                                             ExtractionOverwritePolicy,
                                                             AbstractExtractionResult)
-from src.canguro_processing_tools.utils.parallel_utils import do_parallel
-from src.canguro_processing_tools.utils.str_utils import (seconds_to_human_readble_time,
+from canguro_processing_tools.utils.parallel_utils import do_parallel
+from canguro_processing_tools.utils.str_utils import (seconds_to_human_readble_time,
                                                       calculate_zeros_pad,
                                                       zfill_zeros_pad)
-from src.canguro_processing_tools.extraction.locators import locate_day_dirs_struct
-from src.canguro_processing_tools.extraction.validators import validate_trajectory, TrajectoryStatus
-from src.canguro_processing_tools.extraction.extraction_handle import ExtractionHandle
-from src.canguro_processing_tools.extraction.statistics import (AbstractExtractionStatistic,
+from canguro_processing_tools.extraction.locators import locate_day_dirs_struct
+from canguro_processing_tools.extraction.validators import validate_trajectory, TrajectoryStatus
+from canguro_processing_tools.extraction.extraction_handle import ExtractionHandle
+from canguro_processing_tools.extraction.statistics import (AbstractExtractionStatistic,
                                                             OdometryTimeStatistic,
                                                             IncompleteCountStatistic,
                                                             NoMetadataStatistic,
                                                             OldNamingStatistic,
                                                             collect_statistics)
-from src.canguro_processing_tools.visualization.player_2d_app import Trajectory2dVisualApp
-from src.canguro_processing_tools.trajectories.trajectory_2d import Trajectory2D
-from src.canguro_processing_tools.utils.sync_utils import FPSBuffer
+from canguro_processing_tools.visualization.player_2d_app import Trajectory2dVisualApp
+from canguro_processing_tools.trajectories.trajectory_2d import Trajectory2D
+from canguro_processing_tools.utils.sync_utils import FPSBuffer
 
 
 def _extract_wrap(in_out: Tuple[Path, Path],

@@ -9,7 +9,7 @@ from pathlib import Path
 from tkinter import ttk
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from PIL import Image, ImageTk
-from src.canguro_processing_tools.utils.io_utils import AbstractImageIO, OpenCVImageIO, TurboJPEGImageIO, ImageIO
+from canguro_processing_tools.utils.io_utils import AbstractImageIO, OpenCVImageIO, TurboJPEGImageIO, ImageIO
 
 
 class Trajectory:

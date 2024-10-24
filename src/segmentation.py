@@ -11,11 +11,11 @@ from segment_anything import SamPredictor, sam_model_registry
 from tqdm import tqdm
 from PIL import Image
 import os
-from src.canguro_processing_tools.utils.parallel_utils import do_parallel
-from src.canguro_processing_tools.trajectories.trajectory_2d import Trajectory2D
-from src.canguro_processing_tools.utils.camera_utils import project_points, DEFAULT_CAMERA_PARAMS
-from src.canguro_processing_tools.extraction.locators import locate_day_dirs_struct
-from src.canguro_processing_tools.utils.math_utils import to_relative_frame
+from canguro_processing_tools.utils.parallel_utils import do_parallel
+from canguro_processing_tools.trajectories.trajectory_2d import Trajectory2D
+from canguro_processing_tools.utils.camera_utils import project_points, DEFAULT_CAMERA_PARAMS
+from canguro_processing_tools.extraction.locators import locate_day_dirs_struct
+from canguro_processing_tools.utils.math_utils import to_relative_frame
 
 
 _IMAGE_WIDTH = 960
@@ -192,7 +192,7 @@ def _run_sam(frame_ids: List[str],
              weights_path: Path,
              criterion: str):
     sam = sam_model_registry["vit_h"](checkpoint=weights_path)
-    sam = sam.to(device="cuda")
+    sam = sam.to(device="cpu")
     predictor = SamPredictor(sam)
 
     for frame_id in tqdm(frame_ids):

@@ -3,6 +3,8 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+*sam_vit.pth
+
 # C extensions
 *.so
 
