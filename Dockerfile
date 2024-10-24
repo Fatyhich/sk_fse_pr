@@ -18,9 +18,12 @@ WORKDIR /mnt/code
 # Устанавливаем необходимые пакеты
 COPY Makefile_docker /mnt/code/
 
-RUN bash -l -c "make -f /mnt/code/Makefile_docker prereqs"
+RUN make -f /mnt/code/Makefile_docker prereqs
 
-COPY apply_masks.pyx setup.py src/ /mnt/code/
-RUN bash -l -c "make -f /mnt/code/Makefile_docker build"
+COPY apply_masks.pyx setup.py  Makefile /mnt/code/
 
-RUN bash -l -c "make -f /mnt/code/Makefile_docker test"
+COPY src/ /mnt/code/src
+
+RUN make -f /mnt/code/Makefile_docker build
+
+RUN make -f /mnt/code/Makefile_docker test

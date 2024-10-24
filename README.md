@@ -13,10 +13,10 @@ docker build . -t fse_test
 ```
 2. To run container:
 ```bash
-docker run -it -v <place_of_dataset>:/mnt/data -v $(pwd):/mnt/code fse_test:latest 
+docker run -it -v <place_of_dataset>:/mnt/data fse_test:latest 
 ```
 3. To run container with prerecorded dataset:
 ```bash
-docker run -it -v ./dataset:/mnt/data -v $(pwd):/mnt/code fse_test:latest
+docker run -it -v ./dataset:/mnt/data fse_test:latest
 ```
 

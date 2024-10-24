@@ -6,9 +6,11 @@ prereqs:
 	--break-system-packages && \
 	pip install --force-reinstall \
 	six --break-system-packages
+
 build:
 	python3 setup.py build_ext --inplace
 	# Here we but cython build
+
 test:
 	# Here we some tests
 
