@@ -13,6 +13,7 @@ build:
 
 test:
 	python3 -m unittest -v test/test_preproc.py 
-	python3 -m unittest -v test/test_proc.py  
+	python3 -m unittest -v test/test_proc.py 
+	python3 -m unittest -v test/test_post.py
 	
 
