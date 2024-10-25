@@ -12,8 +12,8 @@ jobs:
       - name: building & testing
         run: docker build . -f Dockerfile -t fse_test
       - name: check prereq
-        run: docker run -it --rm -v ./dataset/:/mnt/data fse_test:latest make -f /mnt/code/Makefile_docker prereqs
+        run: docker run --rm -v ./dataset/:/mnt/data fse_test:latest make -f /mnt/code/Makefile_docker prereqs
       - name: building_check
-        run: docker run -it --rm -v ./dataset/:/mnt/data fse_test:latest make -f /mnt/code/Makefile_docker build
+        run: docker run --rm -v ./dataset/:/mnt/data fse_test:latest make -f /mnt/code/Makefile_docker build
       - name: tests
-        run: docker run -it --rm -v ./dataset/:/mnt/data fse_test:latest make -f /mnt/code/Makefile_docker test
+        run: docker run --rm -v ./dataset/:/mnt/data fse_test:latest make -f /mnt/code/Makefile_docker test
