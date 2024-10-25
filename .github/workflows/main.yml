@@ -9,5 +9,11 @@ jobs:
     steps:
       - name: Git checkout
         uses: actions/checkout@v4
-      - name: build and testing
+      - name: building & testing
         run: docker build . -f Dockerfile -t fse_test
+      - name: check prereq
+        run: docker run -it --rm -v ./dataset/:/mnt/data fse_test:latest make -f /mnt/code/Makefile_docker prereqs
+      - name: building_check
+        run: docker run -it --rm -v ./dataset/:/mnt/data fse_test:latest make -f /mnt/code/Makefile_docker build
+      - name: tests
+        run: docker run -it --rm -v ./dataset/:/mnt/data fse_test:latest make -f /mnt/code/Makefile_docker test
