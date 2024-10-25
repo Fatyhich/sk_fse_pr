@@ -24,8 +24,7 @@ COPY src/apply_masks.pyx setup.py  Makefile /mnt/code/
 
 COPY src/ /mnt/code/src
 
-COPY weights/ /mnt/code/weights
-
+RUN make -f /mnt/code/Makefile_docker dowload_weights
 
 RUN make -f /mnt/code/Makefile_docker build
 

@@ -7,6 +7,10 @@ prereqs:
 	pip install --force-reinstall \
 	six --break-system-packages
 
+dowload_weights:
+	mkdir -p /mnt/code/weights
+	curl -o /mnt/code/weights/sam_vit.pth \
+	https://dl.fbaipublicfiles.com/segment_anything/sam_vit_b_01ec64.pth
 build:
 	python3 setup.py build_ext --inplace --build-lib /mnt/code/src
 	# Here we but cython build
