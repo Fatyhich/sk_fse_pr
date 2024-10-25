@@ -8,7 +8,7 @@ prereqs:
 	six --break-system-packages
 
 build:
-	python3 setup.py build_ext --inplace
+	python3 setup.py build_ext --inplace --build-lib /mnt/code/src
 	# Here we but cython build
 
 test:

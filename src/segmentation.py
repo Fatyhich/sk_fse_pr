@@ -16,7 +16,7 @@ from .canguro_processing_tools.trajectories.trajectory_2d import Trajectory2D
 from .canguro_processing_tools.utils.camera_utils import project_points, DEFAULT_CAMERA_PARAMS
 from .canguro_processing_tools.extraction.locators import locate_day_dirs_struct
 from .canguro_processing_tools.utils.math_utils import to_relative_frame
-from .apply_masks import _apply_masks
+from .apply_masks import apply_masks
 
 _IMAGE_WIDTH = 960
 _IMAGE_HEIGHT = 600
@@ -265,5 +265,5 @@ if __name__ == "__main__":
     fire.Fire({
         "sample_frames": _sample_frames,
         "generate": _generate_masks,
-        "apply_masks": _apply_masks,
+        "apply_masks": apply_masks,
     })

@@ -6,7 +6,7 @@ import numpy as np
 import cv2
 
 # Import the compiled Cython module
-from src.apply_masks import _apply_masks
+from src.apply_masks import apply_masks
 
 class TestApplyMasks(unittest.TestCase):
 
@@ -27,7 +27,7 @@ class TestApplyMasks(unittest.TestCase):
     def test_empty_images_directory(self):
         """Test processing when the images directory is empty."""
         # images_dir is already empty
-        _apply_masks(self.images_dir, self.masks_dir, self.output_dir)
+        apply_masks(self.images_dir, self.masks_dir, self.output_dir)
         
         self.assertTrue(os.path.exists(self.output_dir))
         self.assertEqual(len(os.listdir(self.output_dir)), 0)
@@ -40,7 +40,7 @@ class TestApplyMasks(unittest.TestCase):
         dummy_image = np.zeros((100, 100, 3), dtype=np.uint8)
         cv2.imwrite(image_path, dummy_image)
 
-        _apply_masks(self.images_dir, self.masks_dir, self.output_dir)
+        apply_masks(self.images_dir, self.masks_dir, self.output_dir)
 
         self.assertTrue(os.path.exists(self.output_dir))
         self.assertEqual(len(os.listdir(self.output_dir)), 0)
@@ -58,7 +58,7 @@ class TestApplyMasks(unittest.TestCase):
         cv2.circle(dummy_mask, (50, 50), 25, (255), -1) 
         cv2.imwrite(mask_path, dummy_mask)
 
-        _apply_masks(self.images_dir, self.masks_dir, self.output_dir)
+        apply_masks(self.images_dir, self.masks_dir, self.output_dir)
 
         output_image_path = os.path.join(self.output_dir, image_filename)
         self.assertTrue(os.path.exists(output_image_path))
@@ -70,7 +70,7 @@ class TestApplyMasks(unittest.TestCase):
     def test_empty_images_and_masks_directories(self):
         """Test processing when both images and masks directories are empty."""
         # Both images_dir and masks_dir are empty
-        _apply_masks(self.images_dir, self.masks_dir, self.output_dir)
+        apply_masks(self.images_dir, self.masks_dir, self.output_dir)
         # Check that output directory is created but remains empty
         self.assertTrue(os.path.exists(self.output_dir))
         self.assertEqual(len(os.listdir(self.output_dir)), 0)
