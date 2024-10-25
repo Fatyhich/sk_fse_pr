@@ -1,0 +1,13 @@
+name: GitHub Actions Demo
+on:
+  push:
+    branches: [ main ]
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git checkout
+        uses: actions/checkout@v4
+      - name: build and testing
+        run: docker build . -f Dockerfile -t fse_test
