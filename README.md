@@ -99,6 +99,21 @@ python3 -m unittest -v test/test_<target_stage>.py
 docker run -it -v <place_of_dataset>:/mnt/data <your name of image>:latest python3 -m unittest -v test/test_<target_stage>.py
 ```
 
+## Video with Demo
+
+[![Cloning and Building](https://img.youtube.com/vi/GtE0DjhdLuk/0.jpg)](https://www.youtube.com/watch?v=GtE0DjhdLuk)
+
+<p style="text-align: right; font-style: italic"> Cloning and Building process </p>
+
+[![Cloning and Building](https://i0.wp.com/makezine.com/wp-content/uploads/2013/01/make_logo_rgb.jpg?fit=1024%2C768&ssl=1)](https://www.youtube.com/watch?v=lzQmxEDJ5ik)
+
+<p style="text-align: right; font-style: italic"> Demonstrating all steps with make </p>
+
+[![Cloning and Building](https://img.youtube.com/vi/fLOhlSrpkMo/0.jpg)](https://www.youtube.com/watch?v=fLOhlSrpkMo)
+
+
+<p style="text-align: right; font-style: italic"> Finalization </p>
+
 ## License
 
 The model is licensed under the [Apache 2.0 license](LICENSE).
