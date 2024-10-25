@@ -20,21 +20,83 @@ Below are provided examples of model results.
 
 ## Getting Started 
 
-1. To build conatiner:
+### Easy start
+
+1. You need to clone this repo
+
 ```bash
-docker build . -t fse_test
+git clone https://github.com/Fatyhich/sk_fse_pr.git
 ```
-2. To run container:
+
+2. Then you need to build image with our project
+
 ```bash
-docker run -it -v <place_of_dataset>:/mnt/data fse_test:latest 
+cd sk_fse_pr
+docker build . -t <your name of image>
 ```
-3. To run container with prerecorded dataset:
+If there are no errors in terminal, that means that all requirements for our project has been successfully downloaded and builded. Additionally, pretained weights for SAM has been downloaded. They stores in container in according folder.    
+
+3. Starting container
+
 ```bash
-docker run -it -v ./dataset:/mnt/data fse_test:latest
+docker run -it -v <place_of_dataset>:/mnt/data <your name of image>:latest
 ```
-4. Download weights for SAM:
+
+We separated the pipeline on 3 stages. Inside container you can rub them separately or by one-command.
+
+Each stage description:
+
+- Preprocessing Stage
+We are doing sampling several images from hole dataset and store them in other folder named `preprocess_data/frames`  
+
+To run this stage from local machine:
+
+```bash
+docker run -it -v <place_of_dataset>:/mnt/data <your name of image>:latest make preprocess 
 ```
-https://dl.fbaipublicfiles.com/segment_anything/sam_vit_h_4b8939.pth
+
+- Processing Stage
+On this step we are generate masks for each picture from folder `preprocess_data/frames` using SAM. If masks was generated, they stored in new folder `preprocess_data/masks_area`  
+
+To run this stage from local machine:
+
+```bash
+docker run -it -v <place_of_dataset>:/mnt/data <your name of image>:latest make process 
+```
+
+- Postprocessing Stage
+On the last step we applying generated masks on each image, according on to other. And as output we receive folder `output`, that consist of final images.    
+
+To run this stage from local machine:
+
+```bash
+docker run -it -v <place_of_dataset>:/mnt/data <your name of image>:latest make postprocess 
+```
+
+Also, you can run all this steps with one command from your local machine terminal:
+
+```bash
+docker run -it -v <place_of_dataset>:/mnt/data <your name of image>:latest make all
+```
+
+If you want to remove processed data, here is command available:
+
+```bash
+docker run -it -v <place_of_dataset>:/mnt/data <your name of image>:latest make remove
+```
+
+## Test
+
+Despite the fact that tests are already checked and done on image's building stage, you can run them by the following commands:
+
+```bash
+python3 -m unittest -v test/test_<target_stage>.py
+```
+
+*Attention!* You need run them from inside of started container. If you want to run test from your local machine, without connecting to container:
+
+```bash
+docker run -it -v <place_of_dataset>:/mnt/data <your name of image>:latest python3 -m unittest -v test/test_<target_stage>.py
 ```
 
 ## License
