@@ -166,3 +166,6 @@ cython_debug/
 .vscode/
 
 temp_notebooks/
+
+dataset/output
+dataset/preprocess_data

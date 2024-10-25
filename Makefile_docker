@@ -12,5 +12,7 @@ build:
 	# Here we but cython build
 
 test:
-	# Here we some tests
+	python3 -m unittest -v test/test_preproc.py 
+	python3 -m unittest -v test/test_proc.py  
+	
 
