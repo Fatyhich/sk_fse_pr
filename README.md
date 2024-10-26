@@ -114,6 +114,18 @@ docker run -it -v <place_of_dataset>:/mnt/data <your name of image>:latest pytho
 
 <p style="text-align: right; font-style: italic"> Finalization </p>
 
+
+## Dataset Storage
+
+The dataset used in this project is also stored using Git LFS (Large File Storage) in a separate branch. This allows for efficient storage and versioning of the dataset, while keeping the main codebase lightweight.
+
+To access the dataset in Git LFS format and operate with small-sized repo, simply checkout the lfs_dataaset branch:
+
+```
+git checkout lfs_dataaset
+```
+
+
 ## License
 
 The model is licensed under the [Apache 2.0 license](LICENSE).
